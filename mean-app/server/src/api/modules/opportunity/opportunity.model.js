@@ -9,7 +9,14 @@ const opportunitySchema = new mongoose.Schema({
   location: String,
   status: { type: String, default: "Open" },
   date: Date,
-  imageUrl: String
+  imageUrl: String,
+  // in opportunity.model.js schema
+applicants: [{
+  userId: { type: String },
+  message: String,
+  appliedAt: Date
+}]
 }, { timestamps: true });
+
 
 export default mongoose.model("Opportunity", opportunitySchema);

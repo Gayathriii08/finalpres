@@ -85,6 +85,39 @@ export class OpportunitiesComponent implements OnInit {
     this.editRequested.emit(id);
   }
 
+     // Apply to an opportunity
+applyToOpportunity(opportunityId: string | undefined, opp?: any) {
+  if (!opportunityId) {
+    console.warn('No opportunity id provided for apply');
+    return;
+  }
+
+  const applyUrl = `http://localhost:5000/api/opportunities/${opportunityId}/apply`;
+
+  // Optional payload: include user id from localStorage if available, or other fields
+  const payload = {
+    userId: localStorage.getItem('userId') || null,
+    appliedAt: new Date().toISOString()
+  };
+
+  this.http.post(applyUrl, payload).subscribe({
+    next: (res: any) => {
+      // simple success handling - you can replace with a toast/snackbar
+      console.log('Applied successfully', res);
+      // Optionally update the specific card UI:
+      if (opp) {
+        (opp as any).applied = true;
+      }
+      alert('Application submitted successfully.');
+    },
+    error: (err) => {
+      console.error('Apply failed', err);
+      alert('Failed to submit application. Please try again later.');
+    }
+  });
+}
+// apply closed
+
   onDelete(id?: string) {
     if (!id) return;
     this.deleteTargetId = id;

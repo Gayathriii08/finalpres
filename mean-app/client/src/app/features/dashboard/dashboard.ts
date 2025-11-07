@@ -135,6 +135,9 @@ export class Dashboard implements OnInit {
   // Navigation & UI State
   activeMenu: string = 'dashboard';
   activeProfileTab: string = 'profile';
+  
+  // activePickupTab: 'schedule' | 'history' = 'schedule';
+  activePickupTab: 'schedule' | 'history' = 'history';
   activePickupTab: 'schedule' | 'history' = 'schedule';
   activeAdminTab: 'users' | 'logs' = 'users';
   opportunityView: 'list' | 'create' | 'details' = 'list';
