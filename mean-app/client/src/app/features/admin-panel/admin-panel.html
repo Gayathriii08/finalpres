@@ -9,7 +9,10 @@
     </div>
     
     <div class="nav-center">
-      
+      <div class="search-container">
+        <input type="text" placeholder="Search pickups, opportunities..." class="search-input">
+        <i class="search-icon">🔍</i>
+      </div>
     </div>
     
     <div class="nav-right">
@@ -24,8 +27,8 @@
 
   <div class="main-content">
     <!-- Left Sidebar -->
-<aside class="sidebar" [class.active]="sidebarOpen">
-  <span class="close-btn" (click)="toggleSidebar()">✖</span>      <div class="sidebar-section">
+    <aside class="sidebar">
+      <div class="sidebar-section">
         <h3 class="section-title">MAIN MENU</h3>
         <nav class="sidebar-nav">
           <a href="#" class="nav-item">
@@ -34,7 +37,6 @@
           </a>
           <a href="#" class="nav-item">
             <i class="nav-icon">📅</i>
-            
             <span>Schedule Pickup</span>
           </a>
           <a href="#" class="nav-item">
@@ -47,18 +49,22 @@
           </a>
           <a href="#" class="nav-item">
             <i class="nav-icon">🌱</i>
-            
+            <span>My Impact</span>
           </a>
         </nav>
       </div>
       
       <div class="sidebar-section">
+        <h3 class="section-title">SETTINGS</h3>
         <nav class="sidebar-nav">
           <a href="#" class="nav-item">
             <i class="nav-icon">👤</i>
             <span>My Profile</span>
           </a>
-          
+          <a href="#" class="nav-item">
+            <i class="nav-icon">⚙️</i>
+            <span>Settings</span>
+          </a>
           <a href="#" class="nav-item">
             <i class="nav-icon">❓</i>
             <span>Help & Support</span>
@@ -217,6 +223,7 @@
                     <label>Role</label>
                     <select [(ngModel)]="selectedUser.role" name="role">
                       <option value="user">User</option>
+                      <option value="volunteer">Volunteer</option>
                       <option value="admin">Admin</option>
                     </select>
                   </div>
@@ -281,7 +288,7 @@
             </table>
             
             <div class="no-data" *ngIf="filteredUsers.length === 0">
-              
+              <p>No users found</p>
             </div>
           </div>
         </div>
