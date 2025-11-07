@@ -382,17 +382,17 @@
         <p>Request waste collection and manage your pickups</p>
       </div>
 
-      <div class="schedule-tabs">
-        <button [class.active]="activePickupTab === 'schedule'" (click)="setPickupTab('schedule')">
+       <div class="schedule-tabs">
+       <!-- <button [class.active]="activePickupTab === 'schedule'" (click)="setPickupTab('schedule')">
           Schedule New Pickup
-        </button>
+        </button> -->
         <button [class.active]="activePickupTab === 'history'" (click)="setPickupTab('history')">
           Pickup History
         </button>
       </div>
 
       <!-- Schedule New Pickup Tab -->
-      <div *ngIf="activePickupTab === 'schedule'" class="schedule-form">
+      <!-- <div *ngIf="activePickupTab === 'schedule'" class="schedule-form">
         <div class="form-section">
           <h2>Request Waste Collection</h2>
           <p>Fill in the details to schedule a pickup for your recyclable waste</p>
@@ -452,9 +452,9 @@
                 <span>{{ type }}</span>
               </label>
             </div>
-          </div>
+          </div> -->
           <!-- Volunteer Assignment Section -->
-          <div class="additional-notes-section">
+          <!-- <div class="additional-notes-section">
             <h3>Additional Notes</h3>
             <p>Any special instructions or information about your waste</p>
             <textarea
@@ -469,7 +469,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Pickup History Tab -->
       <div *ngIf="activePickupTab === 'history'" class="pickup-history">

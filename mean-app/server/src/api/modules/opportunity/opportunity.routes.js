@@ -14,5 +14,7 @@ router.get("/", getOpportunities);
 router.get("/:id", getOpportunityById);
 router.put("/:id", updateOpportunity);
 router.delete("/:id", deleteOpportunity);
+// POST /api/opportunities/:id/apply
+router.post("/:id/apply", applyToOpportunity);
 
 export default router;

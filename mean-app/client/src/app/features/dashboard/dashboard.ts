@@ -137,7 +137,8 @@ export class Dashboard implements OnInit {
   activeMenu: string = 'dashboard';
   activeProfileTab: string = 'profile';
   
-  activePickupTab: 'schedule' | 'history' = 'schedule';
+  // activePickupTab: 'schedule' | 'history' = 'schedule';
+  activePickupTab: 'schedule' | 'history' = 'history';
   activeAdminTab: 'users' | 'logs' = 'users';
   opportunityView: 'list' | 'create' | 'details' = 'list';
   selectedOpportunityId: string | null = null;

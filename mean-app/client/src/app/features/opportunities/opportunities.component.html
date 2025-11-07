@@ -2,10 +2,10 @@
   <div class="opportunity-header">
     <h2>Volunteer Opportunities</h2>
     <span>Browse and join recycling and waste management initiatives</span>
-   <button *ngIf="userRole === 'admin'" 
+   <!-- <button *ngIf="userRole === 'admin'" 
         class="btn-primary" 
         (click)="onCreate()">+ Create Opportunity
-</button>
+</button> -->
 
 
   </div>
@@ -40,7 +40,7 @@
   </button>
 
   <!-- Only for admin -->
-  <button *ngIf="userRole === 'admin'" 
+  <!-- <button *ngIf="userRole === 'admin'" 
           class="btn btn-edit" 
           (click)="onEdit((opp._id || opp.id)?.toString())">
     ✏️ Edit
@@ -50,7 +50,14 @@
           class="btn btn-delete" 
           (click)="onDelete((opp._id || opp.id)?.toString())">
     🗑 Delete
-  </button>
+  </button> -->
+  <!-- Apply button for volunteers / regular users -->
+<button *ngIf="userRole !== 'admin'" 
+        class="btn btn-apply"
+        (click)="applyToOpportunity((opp._id || opp.id)?.toString(), opp)">
+  ➤ Apply
+</button>
+
 </div>
 
       </div>
