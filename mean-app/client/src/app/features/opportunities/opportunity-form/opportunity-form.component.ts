@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -10,7 +10,8 @@ const API = 'http://localhost:5000/api/opportunities';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './opportunity-form.component.html',
-  styleUrls: ['./opportunity-form.component.css']
+  styleUrls: ['./opportunity-form.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class OpportunityFormComponent implements OnInit, OnChanges {
   @Input() editId: string | null = null; // when provided -> edit mode
