@@ -4,7 +4,8 @@ import {
   getOpportunities,
   getOpportunityById,
   updateOpportunity,
-  deleteOpportunity
+  deleteOpportunity,
+    applyToOpportunity   // ✅ add this line
 } from "./opportunity.controller.js";
 
 const router = express.Router();

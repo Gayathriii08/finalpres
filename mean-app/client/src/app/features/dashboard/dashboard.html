@@ -382,17 +382,34 @@
         <p>Request waste collection and manage your pickups</p>
       </div>
 
-       <div class="schedule-tabs">
+       <!-- <div class="schedule-tabs"> -->
        <!-- <button [class.active]="activePickupTab === 'schedule'" (click)="setPickupTab('schedule')">
           Schedule New Pickup
         </button> -->
-        <button [class.active]="activePickupTab === 'history'" (click)="setPickupTab('history')">
+        <!-- <button [class.active]="activePickupTab === 'history'" (click)="setPickupTab('history')">
           Pickup History
         </button>
-      </div>
+      </div> -->
+      <div class="schedule-tabs">
+  <!-- Show "Schedule New Pickup" only for admins -->
+  <button
+    *ngIf="isAdmin()"
+    [class.active]="activePickupTab === 'schedule'"
+    (click)="setPickupTab('schedule')"
+  >
+    Schedule New Pickup
+  </button>
+
+  <button [class.active]="activePickupTab === 'history'" (click)="setPickupTab('history')">
+    Pickup History
+  </button>
+</div>
+
 
       <!-- Schedule New Pickup Tab -->
-      <!-- <div *ngIf="activePickupTab === 'schedule'" class="schedule-form">
+       <!-- <div *ngIf="activePickupTab === 'schedule'" class="schedule-form"> -->
+        <!-- Schedule New Pickup Tab -->
+<div *ngIf="activePickupTab === 'schedule' && isAdmin()" class="schedule-form">
         <div class="form-section">
           <h2>Request Waste Collection</h2>
           <p>Fill in the details to schedule a pickup for your recyclable waste</p>
@@ -452,9 +469,9 @@
                 <span>{{ type }}</span>
               </label>
             </div>
-          </div> -->
-          <!-- Volunteer Assignment Section -->
-          <!-- <div class="additional-notes-section">
+          </div> 
+            <!-- Volunteer Assignment Section  -->
+          <div class="additional-notes-section">
             <h3>Additional Notes</h3>
             <p>Any special instructions or information about your waste</p>
             <textarea
@@ -469,7 +486,7 @@
             </button>
           </div>
         </div>
-      </div> -->
+      </div> 
 
       <!-- Pickup History Tab -->
       <div *ngIf="activePickupTab === 'history'" class="pickup-history">
