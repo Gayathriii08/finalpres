@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
@@ -24,7 +24,8 @@ const API = 'http://localhost:5000/api/opportunities';
   standalone: true,
   imports: [CommonModule, HttpClientModule, ConfirmModalComponent],
   templateUrl: './opportunity-detail.component.html',
-  styleUrls: ['./opportunity-detail.component.css']
+  styleUrls: ['./opportunity-detail.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class OpportunityDetailComponent implements OnChanges {
   @Input() id: string | null = null;
@@ -36,9 +37,7 @@ export class OpportunityDetailComponent implements OnChanges {
   error = '';
   showConfirmModal = false;
 
-  constructor(private http: HttpClient) {
-}
-
+  constructor(private http: HttpClient) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['id'] && this.id) {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -24,7 +24,8 @@ const API = 'http://localhost:5000/api/opportunities';
   standalone: true,
   imports: [CommonModule, FormsModule, HttpClientModule, ConfirmModalComponent],
   templateUrl: './opportunities.component.html',
-  styleUrls: ['./opportunities.component.css']
+  styleUrls: ['./opportunities.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class OpportunitiesComponent implements OnInit {
   @Output() createRequested = new EventEmitter<void>();
@@ -37,16 +38,12 @@ export class OpportunitiesComponent implements OnInit {
   showConfirmModal = false;
 
   opportunities: Opportunity[] = [];
-  userRole: string = '';
-
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-  this.userRole = localStorage.getItem('userRole') || '';
-  this.loadOpportunities();
-}
-
+    this.loadOpportunities();
+  }
 
   loadOpportunities() {
     this.http.get<Opportunity[]>(API).subscribe({

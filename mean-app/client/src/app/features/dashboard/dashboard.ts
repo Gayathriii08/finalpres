@@ -102,7 +102,6 @@ export interface User {
   updatedAt: string;
 }
 
-
 export interface AdminLog {
   _id: string;
   action: string;
@@ -143,8 +142,8 @@ export class Dashboard implements OnInit {
   activeAdminTab: 'users' | 'logs' = 'users';
   opportunityView: 'list' | 'create' | 'details' = 'list';
   selectedOpportunityId: string | null = null;
-    userRole: string = '';
-
+  isDarkMode: boolean = false;
+  
   // Loading & Messages
   isLoading: boolean = false;
   errorMessage: string = '';
@@ -295,12 +294,20 @@ export class Dashboard implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-      this.userRole = localStorage.getItem('userRole') || 'volunteer';
-
     if (!this.isAuthenticated()) {
       this.router.navigate(['/login']);
       return;
       
+    }
+    
+    // Load saved theme preference
+    const savedTheme = localStorage.getItem('darkMode');
+    if (savedTheme === 'true') {
+      document.body.classList.add('dark');
+      this.isDarkMode = true;
+      console.log('Dark mode loaded from localStorage');
+    } else {
+      this.isDarkMode = false;
     }
     
     this.getUserProfile();
@@ -460,9 +467,9 @@ if (this.isVolunteer()) {
     return this.isAdmin();
   }
 
- canSchedulePickup(): boolean {
-  return this.userProfile?.role === 'admin' || this.userProfile?.role === 'volunteer';
-}
+  canSchedulePickup(): boolean {
+    return true; // All roles can schedule pickups
+  }
 
   // ==================== NAVIGATION ====================
   
@@ -511,25 +518,18 @@ if (this.isVolunteer()) {
   setPickupTab(tab: 'schedule' | 'history') {
     this.activePickupTab = tab;
   }
-  
-  
+
   setActiveAdminTab(tab: 'users' | 'logs') {
     this.activeAdminTab = tab;
   }
-  sidebarOpen: boolean = false;
-
-toggleSidebar() {
-  this.sidebarOpen = !this.sidebarOpen;
-  if (this.sidebarOpen) {
-    document.body.classList.add('sidebar-open');
-  } else {
-    document.body.classList.remove('sidebar-open');
-  }
-}
-
 
   toggleTheme() {
     document.body.classList.toggle('dark');
+    this.isDarkMode = document.body.classList.contains('dark');
+    console.log('Theme toggled. Dark mode is now:', this.isDarkMode);
+    console.log('Body classes:', document.body.className);
+    // Save preference to localStorage
+    localStorage.setItem('darkMode', this.isDarkMode ? 'true' : 'false');
   }
 
   scrollTo(elementId: string) {
