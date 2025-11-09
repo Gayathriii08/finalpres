@@ -135,10 +135,10 @@ export class Dashboard implements OnInit {
   // Navigation & UI State
   activeMenu: string = 'dashboard';
   activeProfileTab: string = 'profile';
-  
+  user: any = {};  
   // activePickupTab: 'schedule' | 'history' = 'schedule';
   activePickupTab: 'schedule' | 'history' = 'history';
-  activePickupTab: 'schedule' | 'history' = 'schedule';
+  // activePickupTab = this.isAdmin() ? 'schedule' : 'history';
   activeAdminTab: 'users' | 'logs' = 'users';
   opportunityView: 'list' | 'create' | 'details' = 'list';
   selectedOpportunityId: string | null = null;
@@ -297,6 +297,7 @@ export class Dashboard implements OnInit {
     if (!this.isAuthenticated()) {
       this.router.navigate(['/login']);
       return;
+      
     }
     
     // Load saved theme preference
@@ -311,6 +312,11 @@ export class Dashboard implements OnInit {
     
     this.getUserProfile();
     this.loadDashboardData();
+    // Default tab for volunteers
+if (this.isVolunteer()) {
+  this.activePickupTab = 'history';
+}
+
   }
 
   // ==================== AUTHENTICATION & PROFILE ====================
@@ -1502,5 +1508,6 @@ export class Dashboard implements OnInit {
     }
     return number;
   }
-}
 
+  
+}
